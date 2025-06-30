@@ -22,11 +22,16 @@ export const algodClient = new algosdk.Algodv2(config.token, config.server, conf
 
 // Helper functions
 export const generateAccount = () => {
-  const account = algosdk.generateAccount()
-  return {
-    address: account.addr,
-    privateKey: algosdk.secretKeyToMnemonic(account.sk),
-    publicKey: Buffer.from(account.sk.slice(32)).toString('hex')
+  try {
+    const account = algosdk.generateAccount()
+    return {
+      address: account.addr,
+      privateKey: algosdk.secretKeyToMnemonic(account.sk),
+      publicKey: Buffer.from(account.sk.slice(32)).toString('hex')
+    }
+  } catch (error) {
+    console.error('Error generating account:', error)
+    return null
   }
 }
 
