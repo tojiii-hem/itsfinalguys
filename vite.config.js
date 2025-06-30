@@ -18,7 +18,9 @@ export default defineConfig({
           supabase: ['@supabase/supabase-js']
         }
       }
-    }
+    },
+    sourcemap: false,
+    minify: 'terser'
   },
   server: {
     port: 5173,
